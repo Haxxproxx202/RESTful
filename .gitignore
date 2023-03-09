@@ -1,1 +1,8 @@
 /venv
+/htmlcov/
+/.coverage
+#__pycache__
+#*/__pycache__/
+__pycache__/
+my_site_api/__pycache__/views.cpython-310.pyc
+
