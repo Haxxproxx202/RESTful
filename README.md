@@ -1,17 +1,16 @@
-# RESTful Application with ReactJS
+# Django RESTful Application with ReactJS
 
-Description is yet to be added.
+This project is developed for educational and learning purposes. It provides a RESTful API for the ReactJS frontend to consume.
 
-## Prerequisites
-
-Description is yet to be added.
 
 ## Technologies Used
 
-Description i yet to be added.
+- Django
+- Django REST framework
+- ReactJS
 
-## Visuals
+## Additional Packages Used
 
-Description is yet to be added.
-
-
+- Django CORS-headers
+- JWT
+- Coverage
