@@ -10,7 +10,13 @@ This project is developed for educational and learning purposes. It provides a R
 - ReactJS
 
 ## Additional Packages Used
-
+ **Backend**
 - Django CORS-headers
 - Simple JWT
 - Coverage
+
+**Frontend**
+
+- MUI
+- Axios HTTP
+

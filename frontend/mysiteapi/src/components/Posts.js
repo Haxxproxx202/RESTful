@@ -7,7 +7,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import {useState} from "react";
+// import {useState} from "react";
 
 const ContainerResponsive = (props) => {
     const { posts } = props;
@@ -20,7 +20,7 @@ const ContainerResponsive = (props) => {
             posts.map((el, id) => {
                 return (
                     <Box key={id} sx={{minHeight: 350}}>
-                        // <Card
+                        <Card
                         variant="outlined"
                         sx={(theme) => ({
                             width: 300,

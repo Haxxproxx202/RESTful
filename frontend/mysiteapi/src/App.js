@@ -10,10 +10,17 @@ const App = () => {
         loading: false,
         posts: null,
     });
-    const [list, setList] = useState([1, 2, 3, 4, 5]);
+    // const [list, setList] = useState([1, 2, 3, 4, 5]);
 
     useEffect(() => {
         setAppState({ loading: true});
+        // setAppState(prevState => {
+        //     return {
+        //         ...prevState,
+        //         loading: true
+        //     }
+        // })
+        // console.log(appState);
         const apiUrl = 'http://127.0.0.1:8000/api/';
         fetch(apiUrl)
             .then((response) => response.json())
