@@ -46,7 +46,7 @@ export default function SignUp() {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value.trim(),
+            [name]: value,
         })
     }
     const handleSubmit = (event) => {
@@ -60,8 +60,8 @@ export default function SignUp() {
             })
             .then((res) => {
                 history('/login');
-                console.log(res);
-                console.log(res.data);
+                // console.log(res);
+                // console.log(res.data);
             })
             .catch((error) => console.log(error));
     };

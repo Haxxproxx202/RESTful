@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './App.css';
 import Posts from './components/Posts';
 import PostLoadingComponent from './components/PostLoading';
+import axiosInstance from "./axios";
 
 
 const App = () => {
@@ -10,39 +11,17 @@ const App = () => {
         loading: false,
         posts: null,
     });
-    // const [list, setList] = useState([1, 2, 3, 4, 5]);
 
     useEffect(() => {
-        setAppState({ loading: true});
-        // setAppState(prevState => {
-        //     return {
-        //         ...prevState,
-        //         loading: true
-        //     }
-        // })
-        // console.log(appState);
-        const apiUrl = 'http://127.0.0.1:8000/api/';
-        fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-                setAppState(prevState => {
-                    return {
-                        loading: false,
-                        posts: data
-                    }
-                })
-            })
-            .catch((err) => console.log(err))
+        axiosInstance.get().then((res) => {
+            const allPosts = res.data;
+            setAppState({ loading: false, posts: allPosts });
+
+        });
     }, [setAppState]);
     return (
         <div className="App">
             <h1>Latest Posts</h1>
-            {/*{*/}
-            {/*    appState.posts.map((el, id) => (*/}
-            {/*        <PostLoading key={id} isLoading={appState.loading} />*/}
-            {/*    ))*/}
-            {/*}*/}
-            {/*<PostLoading isLoading={appState.loading} posts={appState.posts} />*/}
             <PostLoading isLoading={appState.loading} posts={appState.posts} />
         </div>
     );
