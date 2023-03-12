@@ -12,5 +12,5 @@ This project is developed for educational and learning purposes. It provides a R
 ## Additional Packages Used
 
 - Django CORS-headers
-- JWT
+- Simple JWT
 - Coverage
