@@ -15,7 +15,7 @@ const linkStyle = {
 };
 
 export default function ButtonAppBar() {
-  const history = useNavigate();
+  const navigateTo = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -26,12 +26,12 @@ export default function ButtonAppBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={() => history('/')}
+            onClick={() => navigateTo('/')}
           >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <span style={{cursor: "pointer"}} onClick={() => history('/')}>News</span>
+            <span style={{cursor: "pointer"}} onClick={() => navigateTo('/')}>News</span>
           </Typography>
           <Link
               style={{color: "darkgray", fontSize: "12px", textDecoration: "none"}}

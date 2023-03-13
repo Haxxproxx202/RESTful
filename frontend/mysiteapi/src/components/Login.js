@@ -39,7 +39,7 @@ export default function SignIn() {
         password: "",
     })
     const [loginForm, setLoginForm] = useState(initialLoginData);
-    const history = useNavigate();
+    const navigateTo = useNavigate();
 
     const handleChange = (e) => {
         const { name, value} = e.target;
@@ -61,7 +61,7 @@ export default function SignIn() {
                 localStorage.setItem('refresh_token', res.data.refresh);
                 axiosInstance.defaults.headers['Authorization'] =
                     'JWT ' + localStorage.getItem('access_token');
-                history('/');
+                navigateTo('/');
             })
             .catch((error) => console.log(error));
     };

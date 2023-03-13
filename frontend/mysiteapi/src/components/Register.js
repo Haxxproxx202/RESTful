@@ -33,7 +33,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-    const history = useNavigate();
+    const navigateTo = useNavigate();
     const initialFormData = Object.freeze({
         email: '',
         username: '',
@@ -59,7 +59,7 @@ export default function SignUp() {
                 password: formData.password,
             })
             .then((res) => {
-                history('/login');
+                navigateTo('/login');
                 // console.log(res);
                 // console.log(res.data);
             })

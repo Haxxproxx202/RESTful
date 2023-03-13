@@ -1,7 +1,8 @@
 from rest_framework import generics
 from my_site.models import Post
 from .serializers import PostSerializer
-from rest_framework.permissions import SAFE_METHODS, IsAdminUser, DjangoModelPermissions, BasePermission, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import SAFE_METHODS, IsAdminUser, DjangoModelPermissions, BasePermission, \
+    IsAuthenticatedOrReadOnly, IsAuthenticated
 
 
 class PostUserWritePermission(BasePermission):
@@ -17,12 +18,13 @@ class PostUserWritePermission(BasePermission):
 
 class PostList(generics.ListCreateAPIView):
     # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     queryset = Post.postobjects.all()
     serializer_class = PostSerializer
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):
-    # permission_classes = [PostUserWritePermission]
+    permission_classes = [PostUserWritePermission]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
