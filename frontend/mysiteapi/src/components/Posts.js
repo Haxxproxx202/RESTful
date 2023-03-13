@@ -7,7 +7,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-// import {useState} from "react";
+
 
 const ContainerResponsive = (props) => {
     const { posts } = props;
@@ -38,6 +38,7 @@ const ContainerResponsive = (props) => {
                             '& > *': {minWidth: 'clamp(0px, (360px - 100%) * 999,100%)'},
                         })}
                     >
+
                         <AspectRatio
                             variant="soft"
                             sx={{
@@ -65,7 +66,7 @@ const ContainerResponsive = (props) => {
                                 <div>
                                     <Typography level="h2" sx={{fontSize: 'md'}} mb={0.5}>
                                         <Link
-                                            href="#container-responsive"
+                                            href={`post/${el.slug}`}
                                             overlay
                                             underline="none"
                                             sx={{
@@ -73,7 +74,7 @@ const ContainerResponsive = (props) => {
                                                 '&.Mui-focusVisible:after': {outlineOffset: '-4px'},
                                             }}
                                         >
-                                            {el.author}
+                                            Author: {el.author}
                                         </Link>
                                     </Typography>
                                     <Typography level="body2">{el.title}</Typography>
