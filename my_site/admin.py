@@ -5,7 +5,7 @@ from .models import Post, Category
 @admin.register(Post)
 class AuthorAdmin(admin.ModelAdmin):
     date_hierarchy = 'published'
-    list_display = ('title', 'id', 'slug', 'view_author', 'view_published', 'status')
+    list_display = ('title', 'id', 'slug', 'author', 'view_published', 'status')
     # list_editable = ('status', 'slug',)
     readonly_fields = ('published',)
     list_filter = (('author', admin.RelatedOnlyFieldListFilter),)
@@ -20,9 +20,9 @@ class AuthorAdmin(admin.ModelAdmin):
     actions_on_bottom = True
     actions_on_top = False
 
-    @admin.display(ordering='-view_author')
-    def view_author(self, obj):
-        return obj.author
+    # @admin.display(ordering='-view_author')
+    # def view_author(self, obj):
+    #     return obj.author
 
     @admin.display(empty_value='-empty-')
     def view_published(self, obj):

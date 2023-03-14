@@ -6,6 +6,7 @@ import axiosInstance from "./axios";
 
 
 const App = () => {
+    // console.log("to: ", window.location.search);
     const PostLoading = PostLoadingComponent(Posts);
     const [appState, setAppState] = useState({
         loading: false,

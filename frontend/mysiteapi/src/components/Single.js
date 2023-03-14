@@ -10,7 +10,6 @@ const Single = () => {
         axiosInstance.get(slug)
             .then((response) => {
                 setData({post: response.data})
-                console.log(response.data)
             })
             .catch((error) => console.log(error));
     }, [setData])

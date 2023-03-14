@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mkyy/mui-search-bar": "^0.5.2",
     "@mui/icons-material": "^5.11.11",
     "@mui/joy": "^5.0.0-alpha.70",
     "@mui/material": "^5.11.12",
