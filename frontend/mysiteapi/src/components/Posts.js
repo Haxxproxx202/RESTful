@@ -11,6 +11,7 @@ import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded
 
 const ContainerResponsive = (props) => {
     const { posts } = props;
+    console.log("Nowe posty:", posts);
 
 
     if (!posts || posts.length === 0) {

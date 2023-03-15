@@ -1,11 +1,12 @@
 import {alpha, styled} from "@mui/material/styles";
 import InputBase from '@mui/material/InputBase';
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import * as React from "react";
 import axiosInstance from "../axios";
 import SearchBar from '@mkyy/mui-search-bar';
+import { useNavigate } from "react-router-dom";
 
-const Search = styled('div')(({ theme }) => ({
+const SearchMUI = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -47,17 +48,28 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-function MyComponent() {
-
+const Search = () => {
+    const navigateTo = useNavigate();
     const [appState, setAppState] = useState({
         search: '',
         posts: []
     });
 
-    useEffect(() => {
+    const handleChange = (e) => {
+        console.log(e)
+        setAppState({
+            ...appState,
+            search: e
+        })
+        console.log()
+    }
+
+    const handleSearch = () => {
+        console.log("handleSearch dziala");
         axiosInstance
-            .get('search/' + window.location.search)
+            .get(`search/?search=${appState.search}`)
             .then((response) => {
+                console.log("TO jest response:", response)
                 const allPosts = response.data;
                 setAppState({
                     ...appState,
@@ -65,29 +77,27 @@ function MyComponent() {
                 });
                 console.log(response.data);
             });
-    }, [setAppState]);
-
-
-    // const handleChange = (event) => {
-    //     setValue({
-    //         ...value,
-    //         search: event.target.value
-    //     });
-    //     console.log(value.search);
-    // };
+        navigateTo(`search/?search=${appState.search}`)
+    }
 
     return (
-        <StyledInputBase
+        // <StyledInputBase
+        //     placeholder="Search…"
+        //     onChange={handleChange}
+        //     onSearch={handleSearch}
+        //
+        // />
+    <SearchBar
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
             value={appState.search}
-            // onChange={handleChange}
+            onChange={handleChange}
         />
     );
 }
 
 export {
-    MyComponent,
     SearchIconWrapper,
-    Search,
+    SearchMUI,
+    Search
 }

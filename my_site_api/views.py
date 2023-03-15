@@ -53,8 +53,8 @@ class PostUserWritePermission(BasePermission):
 # ---------------------------------------------------------------------
 #
 class PostList(generics.ListAPIView):
-    # permission_classes = [IsAuthenticatedOrReadOnly]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticated]
     queryset = Post.postobjects.all()
     serializer_class = PostSerializer
 
@@ -79,6 +79,7 @@ class PostList(generics.ListAPIView):
 
 class PostDetail(generics.ListAPIView):
     serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         slug = self.request.query_params.get('slug', None)
