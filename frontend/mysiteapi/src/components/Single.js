@@ -7,9 +7,10 @@ const Single = () => {
     const { slug } = useParams();
 
     useEffect(() => {
-        axiosInstance.get(slug)
+        axiosInstance.get('detail/?slug=' + slug)
             .then((response) => {
-                setData({post: response.data})
+                console.log(response.data)
+                setData({post: response.data[0]})
             })
             .catch((error) => console.log(error));
     }, [setData])

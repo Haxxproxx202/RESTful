@@ -7,7 +7,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from "react-router-dom";;
@@ -29,16 +28,19 @@ export default function ButtonAppBar() {
     posts: []
   });
 
-  const handleChange = (e) => {
-    console.log(e)
+  const handleChange = (inputString) => {
+    console.log(inputString)
     setData({
       ...data,
-      search: e
+      search: inputString
     })
-    console.log()
   }
 
   const handleSearch = () => {
+    setData({
+      posts: data.posts,
+      search: ''
+    });
     navigateTo(`search/?search=${data.search}`, { state: {data: data.search}});
   }
 

@@ -8,6 +8,7 @@ app_name = 'my_site_api'
 urlpatterns = [
     # path('post/<str:pk>/', PostDetail.as_view(), name='detailcreate'),
     path('search/', PostListDetailFilter.as_view(), name='detailcreate'),
+    path('detail/', PostDetail.as_view(), name='detailcreatee'),
     path('', PostList.as_view(), name='listcreate')
 ]
 
