@@ -3,11 +3,14 @@ from my_site.models import Post
 from .serializers import PostSerializer
 from rest_framework.permissions import SAFE_METHODS, IsAdminUser, DjangoModelPermissions, BasePermission, \
     IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
+from rest_framework.views import APIView
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import filters
+from rest_framework import status
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class PostUserWritePermission(BasePermission):
@@ -100,10 +103,23 @@ class PostListDetailFilter(generics.ListAPIView):
 # '@' Full-text search. (Currently only supported Django's PostgreSQL backend.)
 # '$' Regex search.
 
-class CreatePost(generics.CreateAPIView):
-    # permission_classes = [IsAuthenticated]
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+# class CreatePost(generics.CreateAPIView):
+#     # permission_classes = [IsAuthenticated]
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+
+class CreatePost(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def post(self, request, format=None):
+        print(request.data)
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class AdminPostDetail(generics.RetrieveAPIView):

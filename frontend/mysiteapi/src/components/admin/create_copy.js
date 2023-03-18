@@ -16,7 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react";
 import PostAddIcon from '@mui/icons-material/PostAdd';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+// import Posts from "../Posts";
 
 function Copyright(props) {
     return (
@@ -43,16 +43,9 @@ export default function Create() {
     });
 
     const [postData, setPostData] = useState(initialFormData);
-    const [postImage, setPostImage] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'image') {
-            setPostImage({
-                image: e.target.files,
-            })
-            console.log(e.target.files)
-        }
         if (name === 'title') {
             setPostData({
                 ...postData,
@@ -69,50 +62,29 @@ export default function Create() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const config = { headers: { 'Content-Type': 'multipart/form-data'}};
-        // const URL = 'http://127.0.0.1:8000/api/admin/create/';
-        let formData = new FormData();
-        formData.append('title', postData.title);
-        formData.append('slug', postData.slug);
-        formData.append('author', 1);
-        formData.append('excerpt', postData.excerpt);
-        formData.append('content', postData.content);
-        formData.append('image', postImage.image[0]);
+
         axiosInstance
-            .post('admin/create/', formData, config)
-            .then((res) => {
-                console.log(res);
+            .post('admin/create/', {
+                title: postData.title,
+                excerpt: postData.excerpt,
+                author: 1,
+                slug: postData.slug,
+                content: postData.content,
             })
-            .catch((err) => console.log(err));
-        navigateTo('/admin/');
-        window.location.reload();
-
-    //
-    //
-    //     axiosInstance
-    //         .post('admin/create/', {
-    //             title: postData.title,
-    //             excerpt: postData.excerpt,
-    //             author: 1,
-    //             slug: postData.slug,
-    //             content: postData.content,
-    //         })
-    //         // .post('admin/create/', {
-    //         //     "title": "test",
-    //         //     "slug": "test",
-    //         //     "author": 1,
-    //         //     "excerpt": "test",
-    //         //     "content": "dsadas"
-    //         // })
-    //         .then((res) => {
-    //             navigateTo('/admin/');
-    //             // console.log(res);
-    //             // console.log(res.data);
-    //         })
-    //         .catch((error) => console.log(error));
+            // .post('admin/create/', {
+            //     "title": "test",
+            //     "slug": "test",
+            //     "author": 1,
+            //     "excerpt": "test",
+            //     "content": "dsadas"
+            // })
+            .then((res) => {
+                navigateTo('/admin/');
+                // console.log(res);
+                // console.log(res.data);
+            })
+            .catch((error) => console.log(error));
     };
-
-
 
     const slugify = (string) => {
         const a =
@@ -204,16 +176,6 @@ export default function Create() {
                                     onChange={handleChange}
                                 />
                             </Grid>
-                            <input
-                                accept="image/*"
-                                id="post-image"
-                                onChange={handleChange}
-                                name="image"
-                                type="file"
-                            />
-                            <label htmlFor="post-image">
-                                <AddPhotoAlternateIcon />
-                            </label>
                             <Grid item xs={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="allowExtraEmails" color="primary" />}
