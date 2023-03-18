@@ -16,8 +16,6 @@ urlpatterns = [
     path('admin/edit/<int:pk>/', EditPost.as_view(), name='editpost'),
     path('admin/delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
 
-
-
 ]
 
 # router = DefaultRouter()

@@ -73,7 +73,7 @@ export default function CustomizedTables(props) {
                                     <Link href={'/admin/edit/' + el.id}>
                                         <EditRoundedIcon />
                                     </Link>
-                                    <Link href={'/admin/delete' + el.id} style={{color: "red"}}>
+                                    <Link href={'/admin/delete/' + el.id} style={{color: "red"}}>
                                         <DeleteForeverRoundedIcon />
                                     </Link>
                                 </StyledTableCell>

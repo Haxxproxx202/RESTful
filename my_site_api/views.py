@@ -113,7 +113,7 @@ class AdminPostDetail(generics.RetrieveAPIView):
 
 
 class EditPost(generics.UpdateAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
