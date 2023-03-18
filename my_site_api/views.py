@@ -2,7 +2,7 @@ from rest_framework import generics
 from my_site.models import Post
 from .serializers import PostSerializer
 from rest_framework.permissions import SAFE_METHODS, IsAdminUser, DjangoModelPermissions, BasePermission, \
-    IsAuthenticatedOrReadOnly, IsAuthenticated
+    IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -101,7 +101,7 @@ class PostListDetailFilter(generics.ListAPIView):
 # '$' Regex search.
 
 class CreatePost(generics.CreateAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 

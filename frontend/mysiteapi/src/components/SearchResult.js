@@ -27,7 +27,11 @@ const SearchResult = () => {
     } else {
         return (
             <Fragment>
-                <Button variant="text" onClick={() => navigateTo('/')}>Back</Button>
+                <div className="App">
+                    <Button variant="text" onClick={() => navigateTo('/')} style={{float: "left"}}>Back</Button>
+                    <h1>Results</h1>
+                </div>
+
                 {searchPosts(posts)}
             </Fragment>
         )

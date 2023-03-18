@@ -11,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import Link from "@mui/joy/Link";
@@ -80,13 +79,10 @@ export default function CustomizedTables(props) {
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}
-
                     </TableBody>
-
                 </Table>
             </TableContainer>
-            <Button variant="contained" href={'/admin/create'} style={{float: "right"}}>New Post</Button>
+            <Button variant="contained" href={'/admin/create'} style={{float: "right", margin: "10px 10px 100px 10px"}}>New Post</Button>
         </Fragment>
-
     );
 }
