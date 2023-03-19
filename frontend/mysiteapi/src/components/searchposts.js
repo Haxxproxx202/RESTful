@@ -12,7 +12,7 @@ export function searchPosts (posts) {
     const styleCSS = {
         display: "flex",
         float: "left",
-        marginLeft: "10px"
+        margin: "5px 10px"
     }
     return (
         posts.map((el, id) => {
@@ -92,11 +92,14 @@ export function searchPosts (posts) {
                                     '--AspectRatio-paddingBottom':
                                         'clamp(0px, (100% - 200px) * 999, 200px)',
                                     pointerEvents: 'none',
+                                    position: "relative"
                                 }}
                             >
                                 <img
-                                    alt=""
-                                    src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2262"
+                                    alt="not found"
+                                    src={el.image}
+                                    width="50"
+                                    height="50"
                                 />
                             </AspectRatio>
                             <Box sx={{display: 'flex', gap: 1.5, mt: 'auto'}}>

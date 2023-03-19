@@ -54,7 +54,7 @@ export default function Create() {
                     excerpt: response.data.excerpt,
                     slug: response.data.slug,
                     content: response.data.content,
-                    // author: response.data.author
+                    author: response.data.author
                 })
             })
             .catch((error) => console.log(error));

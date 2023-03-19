@@ -1,7 +1,8 @@
-import axiosInstance from "../../axios";
-import { useNavigate } from 'react-router-dom';
-
 import * as React from 'react';
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import slugify from "./slugify/slugify";
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,22 +15,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from "react";
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import axios from "axios";
 
 const theme = createTheme();
 
@@ -59,30 +48,33 @@ export default function Create() {
                 [name]: value,
                 ['slug']: slugify(value.trim())
             })
+            console.log(postData);
         } else {
                 setPostData({
                     ...postData,
                     [name]: value,
             })
+            console.log(postData);
         }}
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const config = { headers: { 'Content-Type': 'multipart/form-data'}};
-        // const URL = 'http://127.0.0.1:8000/api/admin/create/';
+        const URL = 'http://127.0.0.1:8000/api/admin/create/';
         let formData = new FormData();
         formData.append('title', postData.title);
         formData.append('slug', postData.slug);
         formData.append('author', 1);
         formData.append('excerpt', postData.excerpt);
         formData.append('content', postData.content);
-        formData.append('image', postImage.image[0]);
-        axiosInstance
-            .post('admin/create/', formData, config)
-            .then((res) => {
-                console.log(res);
-            })
+        if (postImage) {
+            formData.append('image', postImage.image[0]);
+        }
+        console.log(formData);
+
+        axios
+            .post(URL, formData, config)
             .catch((err) => console.log(err));
         navigateTo('/admin/');
         window.location.reload();
@@ -112,26 +104,6 @@ export default function Create() {
     //         .catch((error) => console.log(error));
     };
 
-
-
-    const slugify = (string) => {
-        const a =
-            'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;';
-        const b =
-            'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------';
-        const p = new RegExp(a.split('').join('|'), 'g');
-
-        return string
-            .toString()
-            .toLowerCase()
-            .replace(/\s+/g, '-') // Replace spaces with -
-            .replace(p, (c) => b.charAt(a.indexOf(c))) // Replace special characters
-            .replace(/&/g, '-and-') // Replace & with 'and'
-            .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-            .replace(/\-\-+/g, '-') // Replace multiple - with single -
-            .replace(/^-+/, '') // Trim - from start of text
-            .replace(/-+$/, ''); // Trim - from end of text
-    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -167,7 +139,6 @@ export default function Create() {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
-                                    // InputProps={{ sx: { height: 80 } }}
                                     multiline
                                     rows={4}
                                     required
@@ -230,13 +201,6 @@ export default function Create() {
                         >
                             Create Post
                         </Button>
-                        {/*<Grid container justifyContent="flex-end">*/}
-                        {/*    <Grid item>*/}
-                        {/*        <Link href="#" variant="body2">*/}
-                        {/*            Already have an account? Sign in*/}
-                        {/*        </Link>*/}
-                        {/*    </Grid>*/}
-                        {/*</Grid>*/}
                     </Box>
                 </Box>
             </Container>

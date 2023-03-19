@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 def upload_to(instance, filename):
-    return f'post/{filename}'
+    return f'posts/{instance.slug}_{filename}'
 
 
 class Category(models.Model):
@@ -28,7 +28,7 @@ class Post(models.Model):
 
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title = models.CharField(max_length=250)
-    image = models.ImageField(_("Image"), upload_to=upload_to, default='posts/default.jpg')
+    image = models.ImageField(_("Image"), upload_to=upload_to, default='posts/no_image.png')
     excerpt = models.TextField(null=True)
     content = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date='published')

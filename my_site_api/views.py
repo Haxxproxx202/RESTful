@@ -109,7 +109,7 @@ class PostListDetailFilter(generics.ListAPIView):
 #     serializer_class = PostSerializer
 
 class CreatePost(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format=None):
@@ -123,7 +123,7 @@ class CreatePost(APIView):
 
 
 class AdminPostDetail(generics.RetrieveAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
