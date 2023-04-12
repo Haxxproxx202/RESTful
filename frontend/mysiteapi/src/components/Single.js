@@ -28,7 +28,7 @@ export default function Single() {
     const styleCSS = {
         display: "flex",
         float: "left",
-        margin: "5px 10px",
+        margin: "50px 1000px",
     }
 
     const trimData = (data) => {
@@ -47,8 +47,9 @@ export default function Single() {
         height: "100%",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
     }
+
     return (
         <div style={styleMainDiv}>
             <Button
@@ -61,7 +62,7 @@ export default function Single() {
             >
                 Back
             </Button>
-            <Box sx={{minHeight: 350}} style={styleCSS}>
+            <Box sx={{minHeight: 850}} >
                 <Card
                     variant="outlined"
                     sx={(theme) => ({
@@ -85,7 +86,7 @@ export default function Single() {
                             display: 'flex',
                             flexDirection: 'column',
                             gap: 2,
-                            maxWidth: 300,
+                            maxWidth: 500,
                         }}
                     >
                         <Box sx={{display: 'flex'}}>
@@ -110,8 +111,8 @@ export default function Single() {
                             <img
                                 alt="not found"
                                 src={data.post.image}
-                                width="250"
-                                height="250"
+                                width="550"
+                                height="550"
                             />
                         </AspectRatio>
                         <Box sx={{display: 'flex', gap: 1.5, mt: 'auto'}}>

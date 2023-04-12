@@ -31,22 +31,22 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
-    },
-}));
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//     color: 'inherit',
+//     '& .MuiInputBase-input': {
+//         padding: theme.spacing(1, 1, 1, 0),
+//         // vertical padding + font size from searchIcon
+//         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+//         transition: theme.transitions.create('width'),
+//         width: '100%',
+//         [theme.breakpoints.up('sm')]: {
+//             width: '12ch',
+//             '&:focus': {
+//                 width: '20ch',
+//             },
+//         },
+//     },
+// }));
 
 const Search = () => {
     const navigateTo = useNavigate();
@@ -61,32 +61,24 @@ const Search = () => {
             ...appState,
             search: e
         })
-        console.log()
     }
 
-    const handleSearch = () => {
-        console.log("handleSearch dziala");
-        axiosInstance
-            .get(`search/?search=${appState.search}`)
-            .then((response) => {
-                console.log("TO jest response:", response)
-                const allPosts = response.data;
-                setAppState({
-                    ...appState,
-                    posts: allPosts
-                });
-                console.log(response.data);
-            });
-        navigateTo(`search/?search=${appState.search}`)
-    }
+    // const handleSearch = () => {
+    //     axiosInstance
+    //         .get(`search/?search=${appState.search}`)
+    //         .then((response) => {
+    //             console.log("TO jest response:", response)
+    //             const allPosts = response.data;
+    //             setAppState({
+    //                 ...appState,
+    //                 posts: allPosts
+    //             });
+    //             console.log(response.data);
+    //         });
+    //     navigateTo(`search/?search=${appState.search}`)
+    // }
 
     return (
-        // <StyledInputBase
-        //     placeholder="Search…"
-        //     onChange={handleChange}
-        //     onSearch={handleSearch}
-        //
-        // />
     <SearchBar
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}

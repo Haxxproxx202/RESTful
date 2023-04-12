@@ -12,7 +12,7 @@ class AuthorAdmin(admin.ModelAdmin):
     preserve_filters = True
     radio_fields = {"status": admin.HORIZONTAL, "author": admin.VERTICAL}
     search_fields = ['title', 'published']
-    search_help_text = "Szukaj po tytule"
+    search_help_text = "Search by title"
     # raw_id_fields = ('author',) ## Changes from the dropdown til normal input
     # save_as = True
 

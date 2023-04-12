@@ -25,6 +25,8 @@ class CustomUserCreate(APIView):
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            user.is_active = True
+            user.save()
             if user:
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)

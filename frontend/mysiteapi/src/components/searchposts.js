@@ -103,11 +103,11 @@ export function searchPosts (posts) {
                                 />
                             </AspectRatio>
                             <Box sx={{display: 'flex', gap: 1.5, mt: 'auto'}}>
-                                <Avatar variant="soft" color="neutral">
-                                    Y
-                                </Avatar>
+                                {/*<Avatar variant="soft" color="neutral">*/}
+                                {/*    Y*/}
+                                {/*</Avatar>*/}
                                 <div>
-                                    <Typography level="body2">Designed by</Typography>
+                                    {/*<Typography level="body2">Designed by</Typography>*/}
                                     <Typography fontWeight="lg" level="body2">
                                         {el.excerpt}
                                     </Typography>

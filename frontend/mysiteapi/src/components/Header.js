@@ -12,8 +12,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from "react-router-dom";;
 
 
-
-
 const linkStyle = {
   margin: "1rem",
   textDecoration: "none",

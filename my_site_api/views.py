@@ -56,8 +56,8 @@ class PostUserWritePermission(BasePermission):
 # ---------------------------------------------------------------------
 #
 class PostList(generics.ListAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    # permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     queryset = Post.postobjects.all()
     serializer_class = PostSerializer
 
@@ -82,7 +82,7 @@ class PostList(generics.ListAPIView):
 
 class PostDetail(generics.ListAPIView):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         slug = self.request.query_params.get('slug', None)
@@ -109,7 +109,7 @@ class PostListDetailFilter(generics.ListAPIView):
 #     serializer_class = PostSerializer
 
 class CreatePost(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format=None):
@@ -123,13 +123,13 @@ class CreatePost(APIView):
 
 
 class AdminPostDetail(generics.RetrieveAPIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
 
 class EditPost(generics.UpdateAPIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 

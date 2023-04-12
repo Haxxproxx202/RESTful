@@ -15,7 +15,6 @@ const SearchResult = () => {
         axiosInstance
             .get(`search/?search=${data.state.data}`)
             .then((response) => {
-                console.log("TO jest response:", response)
                 const allPosts = response.data;
                 setPosts(allPosts);
             });

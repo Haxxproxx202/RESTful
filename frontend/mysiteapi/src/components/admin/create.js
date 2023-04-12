@@ -9,7 +9,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -17,9 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-
 import axios from "axios";
-
 const theme = createTheme();
 
 export default function Create() {
@@ -40,7 +37,6 @@ export default function Create() {
             setPostImage({
                 image: e.target.files,
             })
-            console.log(e.target.files)
         }
         if (name === 'title') {
             setPostData({
@@ -48,13 +44,11 @@ export default function Create() {
                 [name]: value,
                 ['slug']: slugify(value.trim())
             })
-            console.log(postData);
         } else {
                 setPostData({
                     ...postData,
                     [name]: value,
             })
-            console.log(postData);
         }}
 
     const handleSubmit = (event) => {
@@ -71,7 +65,6 @@ export default function Create() {
         if (postImage) {
             formData.append('image', postImage.image[0]);
         }
-        console.log(formData);
 
         axios
             .post(URL, formData, config)
