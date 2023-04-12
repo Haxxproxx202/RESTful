@@ -4,10 +4,10 @@ Fullstack web application built with Django and Django Rest Framework
 on the backend and ReactJS on the frontend. This app also includes token-based
 authentication.
 
----
+
 *Please be aware that this app contains commented-out code, which has been left
 in place for reference and further educational purposes*
----
+
 
 ## Technologies Used
 
