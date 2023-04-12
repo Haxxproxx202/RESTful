@@ -5,7 +5,6 @@ import Typography from "@mui/joy/Typography";
 import Link from "@mui/joy/Link";
 import IconButton from "@mui/joy/IconButton";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import Avatar from "@mui/joy/Avatar";
 import * as React from "react";
 
 export function searchPosts (posts) {
@@ -103,11 +102,7 @@ export function searchPosts (posts) {
                                 />
                             </AspectRatio>
                             <Box sx={{display: 'flex', gap: 1.5, mt: 'auto'}}>
-                                {/*<Avatar variant="soft" color="neutral">*/}
-                                {/*    Y*/}
-                                {/*</Avatar>*/}
                                 <div>
-                                    {/*<Typography level="body2">Designed by</Typography>*/}
                                     <Typography fontWeight="lg" level="body2">
                                         {el.excerpt}
                                     </Typography>
@@ -119,5 +114,4 @@ export function searchPosts (posts) {
             )
         })
     )
-
 }
